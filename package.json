@@ -1,23 +1,23 @@
 {
-  "name": "grunt-codebabyscanner",
-  "description": "Tool to scan JavaScript files and check for security issues.",
+  "name": "grunt-codebaby-scanner",
+  "description": "Grunt plugin to scan JavaScript files and check for security issues.",
   "version": "0.1.0",
-  "homepage": "https://github.com/jasonbrodie/codebabyscanner",
+  "homepage": "https://github.com/jasonbrodie/codebaby-scanner",
   "author": {
     "name": "jason.brodie",
     "email": "jason.brodie@codebaby.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jasonbrodie/codebabyscanner.git"
+    "url": "git://github.com/jasonbrodie/codebaby-scanner.git"
   },
   "bugs": {
-    "url": "https://github.com/jasonbrodie/codebabyscanner/issues"
+    "url": "https://github.com/jasonbrodie/codebaby-scanner/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/jasonbrodie/codebabyscanner/blob/master/LICENSE-MIT"
+      "url": "https://github.com/jasonbrodie/codebaby-scanner/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
