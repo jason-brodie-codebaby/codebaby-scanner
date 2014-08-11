@@ -17,17 +17,17 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-codebaby-scanner');
 ```
 
-## The "scanner" task
+## The "scan" task
 
 ### Overview
-In your project's Gruntfile, add a section named `scanner` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `scan` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-    scanner: {
+    scan: {
         options: {
             signatures: {
-                // Put in extra security rules here for the scanner
+                // Put in extra security rules here for the scan
             }
         },
         your_target: {
@@ -43,14 +43,14 @@ grunt.initConfig({
 Type: `String`
 Default value: `null`
 
-An object with more rules for the scanner. See [here](https://github.com/mozilla/scanjs#rule-syntax) for more info
+An object with more rules for the scan. See [here](https://github.com/mozilla/scanjs#rule-syntax) for more info
 
 ### Usage Examples
 
 #### Default Usage
 ```js
 grunt.initConfig({
-    scanner: {
+    scan: {
         options: {},
         files: [
             {
@@ -67,7 +67,7 @@ grunt.initConfig({
 #### Custom Signature Usage
 ```js
 grunt.initConfig({
-    scanner: {
+    scan: {
         options: {
             signatures: {
                 {
