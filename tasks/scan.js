@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     var ScanJS = require('scanjs/common/scan');
     var signatures = JSON.parse(fs.readFileSync(__dirname + "/../node_modules/scanjs/common/rules.json", "utf8"));
 
-    var windowWidth = process.stdout.getWindowSize()[0]/2 - 2; // - 2 for padding
+    var windowWidth = Math.floor(process.stdout.getWindowSize()[0]/2 - 2); // - 2 for padding
 
     grunt.registerMultiTask('scan', 'Tool to scan JavaScript files and check for security issues.', function() {
         // Merge task-specific and/or target-specific options with these defaults.
