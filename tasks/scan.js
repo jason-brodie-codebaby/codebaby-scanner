@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     global.acorn = require('scanjs/client/js/lib/acorn');
     global.acorn.walk = require('scanjs/client/js/lib/walk');
     var ScanJS = require('scanjs/common/scan');
-    var signatures = JSON.parse(fs.readFileSync("./node_modules/scanjs/common/rules.json", "utf8"));
+    var signatures = JSON.parse(fs.readFileSync(__dirname + "/../node_modules/scanjs/common/rules.json", "utf8"));
 
     var windowWidth = process.stdout.getWindowSize()[0]/2 - 2; // - 2 for padding
 
@@ -37,6 +37,10 @@ module.exports = function(grunt) {
             colWidths: [windowWidth, windowWidth]
         });
 
+        if(_.size(this.files) === 0) {
+            grunt.log.warn('CodeBaby Scanner called but found no files to scan');
+            return false;
+        }
 
         // Iterate over all specified file groups.
         this.files.forEach(function(f) {
