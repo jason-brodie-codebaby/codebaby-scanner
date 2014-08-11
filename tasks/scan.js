@@ -62,17 +62,14 @@ module.exports = function(grunt) {
 
             // Handle options.
             var scanResult = ScanJS.scan(src, finalPath);
-            if(typeof scanResult[0] === 'undefined') {
-                table.push(
-                    [finalPath.yellow, 'Secure'.green]
-                );
-            } else {
-                var errorMsg = 'Insecure\n'.red;
+            if(typeof scanResult[0] !== 'undefined') {
+                var errorMsg = 'Possibly insecure\n'.red;
                 _.each(scanResult, function(error) {
                     var details = {
                         rule: error.rule.name,
                         line: error.line,
-                        snippet: error.snippet
+                        snippet: error.snippet,
+                        desc: error.rule.desc
                     };
                     errorMsg += JSON.stringify(details, null, 2).white;
                 });

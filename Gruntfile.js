@@ -1,6 +1,6 @@
 /*
- * grunt-scan
- * https://github.com/jasonbrodie/scan
+ * codebaby-scanner
+ * https://github.com/jason-brodie-codebaby/codebaby-scanner
  *
  * Copyright (c) 2014 jason.brodie
  * Licensed under the MIT license.
@@ -12,25 +12,9 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
-        jshint: {
-            all: [
-                'Gruntfile.js',
-                'tasks/*.js',
-                '<%= nodeunit.tests %>'
-            ],
-            options: {
-                jshintrc: '.jshintrc'
-            }
-        },
-
-        // Before generating any new files, remove any previously-created files.
-        clean: {
-            tests: ['tmp']
-        },
-
         // Configuration to be run (and then tested).
         scan: {
-            default: {
+            dev: {
                 options: {
                     signatures: {
 
@@ -58,15 +42,9 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-    // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'scan', 'nodeunit']);
-
     // By default, lint and run all tests.
-    grunt.registerTask('default', ['jshint', 'test']);
+    grunt.registerTask('default', ['scan']);
 
 };

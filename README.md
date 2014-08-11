@@ -24,66 +24,70 @@ In your project's Gruntfile, add a section named `scanner` to the data object pa
 
 ```js
 grunt.initConfig({
-  scanner: {
-    options: {
-      // Task-specific options go here.
+    scanner: {
+        options: {
+            signatures: {
+                // Put in extra security rules here for the scanner
+            }
+        },
+        your_target: {
+            // Target-specific file lists and/or options go here.
+        },
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.signatures
 Type: `String`
-Default value: `',  '`
+Default value: `null`
 
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
+An object with more rules for the scanner. See [here](https://github.com/mozilla/scanjs#rule-syntax) for more info
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
+#### Default Usage
 ```js
 grunt.initConfig({
-  scanner: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    scanner: {
+        options: {},
+        files: [
+            {
+                expand: true,
+                cwd: 'tmp/',
+                src: ['**/*.js'],
+                ext: '.js'
+            },
+        ]
     },
-  },
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
+#### Custom Signature Usage
 ```js
 grunt.initConfig({
-  codebabyscanner: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
+    scanner: {
+        options: {
+            signatures: {
+                {
+                  "name": "property",
+                  "source": "$_any.foo",
+                  "testhit": "a.foo; a.b.foo; this['foo'];this['bar'].foo;",
+                  "testmiss": "foo;",
+                  "desc": "Matches object with property of same name.",
+                  "threat": "example"
+                }
+            }
+        },
+        files: [
+            {
+                expand: true,
+                cwd: 'tmp/',
+                src: ['**/*.js'],
+                ext: '.js'
+            },
+        ]
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
 });
 ```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
